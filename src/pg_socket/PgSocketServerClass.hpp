@@ -2,13 +2,13 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 
-class PgSocketServerClass : protected PgSocketBaseClass {
+class PgSocketServerClass : public PgSocketBaseClass {
 
 
     public:
-        PgSocketServerClass(int domain, int type, int protocol);
+        PgSocketServerClass();
         ~PgSocketServerClass();
-        void pg_bind(const sockaddr * address);
+        void pg_bind(const sockaddr * address, int size) throw(int);
 
 
 

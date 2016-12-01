@@ -1,13 +1,11 @@
-#include <sys/types.h>
-#include <sys/socket.h>
-
 class PgSocketBaseClass {
 
     protected:
         int sock_d;
 
     public:
-        PgSocketBaseClass(int domain, int type, int protocol);
+        PgSocketBaseClass();
         ~PgSocketBaseClass();
+        void pg_create_socket_d(int domain, int type, int protocol) throw(int);
 
 };

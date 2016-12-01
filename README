@@ -1,1 +1,12 @@
 # Process Gripper #
+
+# idea #
+is to use Python and C++ to create a way to run processes in sandboxes
+1. we are not sure if this can be done in pure python, beside extending c++ code into python is not always
+ so easy and readable if we would like to keep all c++ classes and functions, possibly we will create some
+ demons/services which will communicate with each other (PROTOCOL).
+
+X.
+    1. There is a way to be informed with socket descriptor about bunch of information (FORK, SPAWN, SID...) from kernel (NETLINK)
+    2. We have inotify-cxx library which watch files and inform about requested operations on files
+    X. How two control process calls and operations like through some pipe and decide whether this can be done ?
