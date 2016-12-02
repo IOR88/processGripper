@@ -19,14 +19,14 @@ int main(){
 
     //create socket descriptor//
     try {
-        sn.pg_create_socket_d(PF_NETLINK, SOCK_DGRAM, NETLINK_CONNECTOR);
+        sn.pg_create_socket_d(AF_NETLINK, SOCK_DGRAM, NETLINK_CONNECTOR);
         std::cout << "OK:: socket creation"  << std::endl;
     } catch(int e){
         std::cout << "ERROR:: socket creation " << strerror(errno)  << std::endl;
     };
 
     //create client address structure//
-    sn.pg_fill_address(AF_NETLINK, 0, getpid(), CN_IDX_PROC);
+    sn.pg_create_address(AF_NETLINK, 0, getpid(), CN_IDX_PROC);
 
     //bind socket//
     try {
@@ -36,5 +36,8 @@ int main(){
         std::cout << "ERROR:: socket binding " << strerror(errno)  << std::endl;
 
     }
+
+    //create netlink and connector headers//
+    //subscribe//
 
 }
