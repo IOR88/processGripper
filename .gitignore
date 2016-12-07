@@ -1,4 +1,4 @@
 bin
-src/**/*.o
+src/**/*.out
 abyss/**/_*
-abyss/**/*.o
+abyss/**/*.out
