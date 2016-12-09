@@ -58,22 +58,24 @@ int main(){
     dest_addr.nl_pid = 0; //linux kernel
     dest_addr.nl_groups = 0; //unicast
 
-    struct nlmsghdr * nlh;
-    nlh->nlmsg_len = NLMSG_SPACE(NLINK_MSG_LEN);
+    nlmsghdr nlmsghdrbuf[NLMSG_LENGTH (0)];
+    struct nlmsghdr *nlh = nlmsghdrbuf;
+    nlh->nlmsg_len = NLMSG_SPACE(1024); //todo
     nlh->nlmsg_pid = getpid();
     nlh->nlmsg_flags = 0;
 
-    struct iovec iov;
-    iov.iov_base = (void *)nlh;
-    iov.iov_len = nlh->nlmsg_len;
+    struct iovec iov[0];
+    iov[0].iov_base = (void *)nlh;
+    iov[0].iov_len = nlh->nlmsg_len;
 
 
     struct msghdr msg;
     msg.msg_name = (void *)&dest_addr;
     msg.msg_namelen = sizeof(dest_addr);
-    msg.msg_iov = &iov;
+    msg.msg_iov = &iov[0];
     msg.msg_iovlen = 1;
 
+    cout << sizeof(msg) << endl;
     int sc = sendmsg(sd, &msg, 0);
 
     if (sc < 0){
